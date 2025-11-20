@@ -1,0 +1,131 @@
+/* Styles for calenderPage component */
+.calendar-page {
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.calendar-controls {
+  margin-bottom: 12px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  padding-top: 1rem;
+}
+
+/* Home button fixed to top-left */
+.home-button {
+  position: fixed !important;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  /* make it visually distinct */
+  background-color: #646cff !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+}
+
+/* File input label and input */
+.file-label {
+  margin-right: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-color); /* ensure label text is high-contrast on dark bg */
+  font-weight: 600; /* slightly bolder */
+  font-size: 1rem;
+}
+.file-input {
+  margin-left: 8px;
+  color: var(--text-color);
+}
+
+/* Group for view buttons */
+.view-buttons {
+  display: inline-flex;
+  gap: 8px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* Other buttons (non-Home) should have white backgrounds per request */
+.control-button {
+  margin-left: 0;
+  padding: 0.6em 1em;
+  border-radius: 8px;
+  background-color: #ffffff; /* white */
+  color: #111; /* dark text for contrast on white */
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  font-weight: 700; /* make the label bolder for readability */
+}
+.control-button:hover {
+  border-color: #646cff;
+  background-color: #fafafa;
+}
+
+/* Import message */
+.message {
+  margin-left: 12px;
+  font-size: 1rem; /* slightly larger */
+  color: var(--text-color); /* make status messages high-contrast */
+  font-weight: 600;
+}
+
+/* Small tweaks for FullCalendar area to match other calendar styles */
+.fc {
+  background: white;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/* Ensure the calendar doesn't get hidden behind the fixed home button on small screens */
+@media (max-width: 480px) {
+  .home-button {
+    top: 8px;
+    left: 8px;
+  }
+  .calendar-controls {
+    padding-top: 3.2rem; /* give space for fixed button */
+  }
+}
+
+/* On larger screens give a bit more top space so controls don't overlap */
+@media (min-width: 481px) {
+  .calendar-controls {
+    padding-top: 2.4rem;
+  }
+}
+
+/* Make calendar UI text black inside the calendar page for better readability on the white calendar surface */
+.calendar-page .fc,
+.calendar-page .fc * {
+  color: #111 !important;
+}
+
+/* Keep event text white so it remains readable on colored event backgrounds */
+.calendar-page .fc .fc-daygrid-event,
+.calendar-page .fc .fc-daygrid-event * {
+  color: #fff !important;
+}
+
+/* Specific overrides for toolbar and header cells */
+.calendar-page .fc .fc-toolbar-title,
+.calendar-page .fc .fc-col-header-cell-cushion,
+.calendar-page .fc .fc-daygrid-day-number {
+  color: #111 !important;
+  font-weight: 700;
+}
+
+/* Make FullCalendar buttons light/white with dark text for readability */
+.calendar-page .fc .fc-button {
+  background: #fff !important;
+  border: 1px solid #e0e0e0 !important;
+  color: #111 !important;
+}
+
+/* Keep hover state subtle */
+.calendar-page .fc .fc-button:hover {
+  background: #fafafa !important;
+}

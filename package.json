@@ -1,0 +1,43 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@fullcalendar/core": "^6.1.19",
+    "@fullcalendar/daygrid": "^6.1.19",
+    "@fullcalendar/google-calendar": "^6.1.19",
+    "@fullcalendar/interaction": "^6.1.19",
+    "@fullcalendar/list": "^6.1.19",
+    "@fullcalendar/multimonth": "^6.1.19",
+    "@fullcalendar/react": "^6.1.19",
+    "@fullcalendar/scrollgrid": "^6.1.19",
+    "@fullcalendar/timegrid": "^6.1.19",
+    "@mui/material": "^7.3.5",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-modal": "^3.16.3",
+    "react-router-dom": "^7.9.6",
+    "reactjs-popup": "^2.0.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.1.0",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "vite": "^7.2.2"
+  }
+}
