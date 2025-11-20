@@ -26,7 +26,8 @@
     "react-dom": "^19.2.0",
     "react-modal": "^3.16.3",
     "react-router-dom": "^7.9.6",
-    "reactjs-popup": "^2.0.6"
+    "reactjs-popup": "^2.0.6",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
