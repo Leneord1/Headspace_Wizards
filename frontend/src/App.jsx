@@ -10,11 +10,11 @@ import HomeScreen from "./Components/HomeScreen.jsx";
 
 
 
+export default function App() {
+
+
+
   return (
-    <>
-    <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
       <Router>
           <Routes>
               <Route path="/" element={<HomeScreen />} />
