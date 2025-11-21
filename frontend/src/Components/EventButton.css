@@ -5,3 +5,8 @@ padding-left: 175px;
 .inputbuttons{
     width: 50%;
 }
+
+.staticname{
+    padding-left: 500px;
+    color: pink;
+}

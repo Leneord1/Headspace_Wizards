@@ -5,6 +5,8 @@ import Calendar from "./Calendar.jsx";
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import dayjs from "dayjs";
 import {useNavigate} from "react-router-dom";
+import GoodButton from "./GoodButton.jsx";
+import BadButton from "./BadButton.jsx";
 
 
 
@@ -14,16 +16,21 @@ export default function HomeScreen(){
     return(
         <>
             <div>
-                <a href="https://vite.dev" target="_blank">
-                    <img src={viteLogo} className="logo" alt="Vite logo" />
-                </a>
-                <a href="https://react.dev" target="_blank">
-                    <img src={reactLogo} className="logo react" alt="React logo" />
-                </a>
+
             </div>
             <h1>What is going on?</h1>
-            <div className="card">
-                <EventButton eventName="Eat"></EventButton>
+            <div className="container">
+                <GoodButton eventName="Eat" className="HomepageButtons"/>
+                <GoodButton eventName="Exercise" className="HomepageButtons"/>
+                <GoodButton eventName="Socialize" className="HomepageButtons"/>
+
+                <br/>
+
+                <BadButton eventName="Substance" className="HomepageButtons"/>
+                <BadButton eventName="Doom Scroll" className="HomepageButtons"/>
+                <BadButton eventName="Smoke" className="HomepageButtons"/>
+                <br/>
+                <EventButton eventName="+" className="HomepageButtons"/>
 
 
             </div>
