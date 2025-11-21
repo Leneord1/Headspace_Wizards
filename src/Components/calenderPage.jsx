@@ -6,9 +6,14 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import Button from '@mui/material/Button';
 import './calenderPage.css';
 
+// Configure backend base URL here or via env var
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || '';
+
 export default function CalendarPage() {
   const calendarRef = useRef(null);
   const [message, setMessage] = useState('');
+  const [lastImportedEvents, setLastImportedEvents] = useState([]); // store parsed events for sending to backend
+  const [lastFile, setLastFile] = useState(null); // raw file reference (for optional upload)
   const navigate = useNavigate();
 
   function goNext() {
@@ -102,6 +107,8 @@ export default function CalendarPage() {
       return;
     }
 
+    setLastFile(file);
+
     const text = await file.text();
 
     // Split into VEVENT blocks
@@ -136,10 +143,91 @@ export default function CalendarPage() {
       }
     }
 
+    setLastImportedEvents(events);
     setMessage(`Imported ${added} event(s) from ${file.name}`);
 
     // reset file input so same file can be re-selected if needed
     e.target.value = '';
+  }
+
+  // Send last imported events to backend as JSON
+  async function sendImportedEventsToServer() {
+    setMessage('');
+    if (!lastImportedEvents || !lastImportedEvents.length) {
+      setMessage('No imported events to send. Import a .ics first.');
+      return;
+    }
+
+    if (!BACKEND_URL) {
+      setMessage('BACKEND_URL not configured in client. Set REACT_APP_BACKEND_URL to enable server calls.');
+      return;
+    }
+
+    // changed endpoint to match helper server: /api/import-events
+    const endpoint = `${BACKEND_URL}/api/import-events`;
+    setMessage(`Sending ${lastImportedEvents.length} events to server...`);
+
+    try {
+      // ===== Backend call point =====
+      // POST JSON payload: { sourceFile: '<filename>', events: [ { title, start, end, allDay } ] }
+      // If your Python backend expects a multipart upload with the raw .ics, use sendRawFileToServer() below instead.
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' /*, 'Authorization': 'Bearer <token>' */ },
+        body: JSON.stringify({ source: 'client-ics', events: lastImportedEvents }),
+      });
+
+      if (!res.ok) {
+        const txt = await res.text().catch(() => '');
+        throw new Error(txt || `Server responded ${res.status}`);
+      }
+
+      const body = await res.json().catch(() => null);
+      setMessage(body?.message || `Server accepted ${lastImportedEvents.length} events.`);
+    } catch (err) {
+      console.error('Failed to send events', err);
+      setMessage('Failed to send events to server: ' + (err.message || err));
+    }
+  }
+
+  // Optionally send raw file (multipart/form-data) to the backend
+  async function sendRawFileToServer() {
+    setMessage('');
+    if (!lastFile) {
+      setMessage('No file available. Please import an .ics file first.');
+      return;
+    }
+    if (!BACKEND_URL) {
+      setMessage('BACKEND_URL not configured in client. Set REACT_APP_BACKEND_URL to enable server calls.');
+      return;
+    }
+
+    const endpoint = `${BACKEND_URL}/api/import-events/upload`;
+    setMessage('Uploading .ics file to server...');
+
+    try {
+      const form = new FormData();
+      form.append('file', lastFile, lastFile.name);
+
+      // ===== Backend call point (multipart upload) =====
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        // DO NOT set Content-Type when sending FormData; the browser will set the correct boundary
+        // headers: { 'Authorization': 'Bearer <token>' }
+        body: form,
+      });
+
+      if (!res.ok) {
+        const txt = await res.text().catch(() => '');
+        throw new Error(txt || `Server responded ${res.status}`);
+      }
+
+      const body = await res.json().catch(() => null);
+      setMessage(body?.message || 'File uploaded successfully.');
+    } catch (err) {
+      console.error('Upload failed', err);
+      setMessage('Upload failed: ' + (err.message || err));
+    }
   }
 
   return (
@@ -162,11 +250,13 @@ export default function CalendarPage() {
           <input className="file-input" type="file" accept=".ics" onChange={handleFile} />
         </label>
 
-        {/* View switch buttons */}
+        {/* Send/import controls */}
         <div className="view-buttons">
           <button className="control-button" onClick={() => changeView('dayGridMonth')}>Month</button>
           <button className="control-button" onClick={() => changeView('timeGridWeek')}>Week</button>
           <button className="control-button" onClick={() => changeView('timeGridDay')}>Day</button>
+          <button className="control-button" onClick={sendImportedEventsToServer}>Send Events to Server</button>
+          <button className="control-button" onClick={sendRawFileToServer}>Upload .ics to Server</button>
         </div>
 
         <span className="message">{message}</span>

@@ -1,0 +1,6 @@
+flask
+flask-cors
+# optional if you want DB and groq support
+# pyodbc
+# groq
+
