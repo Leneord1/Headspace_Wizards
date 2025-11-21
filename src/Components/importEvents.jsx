@@ -20,9 +20,9 @@ import { useNavigate } from "react-router-dom";
 import Papa from 'papaparse';
 import './importEvents.css';
 
-// Optionally change this to your backend base URL (or set via env/config)
-// e.g. REACT_APP_BACKEND_URL=http://localhost:5000
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || '';
+// Optionally change this to your backend base URL (or set via Vite env)
+// e.g. VITE_BACKEND_URL=http://localhost:5000 in a .env file
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || '';
 
 /*
   Endpoint notes (map these to your Python backend routes):
@@ -115,7 +115,7 @@ export default function ImportEvents() {
 
         setUploading(true);
         try {
-            // ===== Backend call point (JSON) =====
+            //      Backend call point (JSON)
             // Update the URL below to point to your backend API endpoint that accepts JSON rows
             const endpoint = `${BACKEND_URL}/api/import-events`;
 

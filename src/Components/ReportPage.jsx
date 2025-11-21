@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import './ReportPage.css';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || '';
+// Configure backend base URL via Vite env (set VITE_BACKEND_URL in .env)
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || '';
 
 export default function ReportPage() {
   const navigate = useNavigate();
@@ -102,4 +103,3 @@ export default function ReportPage() {
     </div>
   );
 }
-
