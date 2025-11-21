@@ -27,7 +27,7 @@ export default function GoalButton(){
     const handleClose = () => setOpen(false);
     const [currentDate, setCurrentDate] = useState('');
     const [description, setDescription] = useState('');
-    const [duration, setDuration] = useState(1);
+    const [name, setName] = useState('');
     const [trigger, setTrigger] = useState('');
     //const [currTime, setCurrentTime] = useState<Dayjs | null>(dayjs('2025-04-17T15:30'))
 
@@ -40,14 +40,13 @@ export default function GoalButton(){
                 "name": name,
                 "date": currentDate,
                 "description": description,
-                "duration": duration,
                 "trigger": trigger,
 
             }
 
 
         if (typeof submission.date !== "undefined") {
-            console.log('works' + submission.date);
+            console.log(JSON.stringify(submission));
         } else console.log('broke');
     }
 
@@ -73,19 +72,13 @@ export default function GoalButton(){
                         size="small"
                         id="outlined-required"
                         label="Name"
-                        defaultValue={name}
+                        value={name}
+                        onChange={((e) => setName(e.target.value))}
                         placeholder="Name"
                         className="inputbuttons"
 
                     />
-                    <TextField
-                        type="number"
-                        size="small"
-                        label="Duration(mins)"
-                        className="inputbuttons"
-                        value={duration}
-                        onChange={((e) => setDuration(e.target.value))}
-                    />
+
                     <TextField
 
                         size="small"
