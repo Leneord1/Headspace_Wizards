@@ -13,6 +13,9 @@ export default function HomeScreen(){
     function handleImport() {
         navigate('/importEvents');
     }
+    function handleReports() {
+        navigate('/reports');
+    }
 
     return(
         <>
@@ -29,6 +32,7 @@ export default function HomeScreen(){
                 <EventButton />
                 <Button onClick={handleCalender}>Calendar</Button>
                 <Button onClick={handleImport}>Import Data</Button>
+                <Button onClick={handleReports}>Reports</Button>
             </div>
             <p className="read-the-docs">
                 Click on the Vite and React logos to learn more
