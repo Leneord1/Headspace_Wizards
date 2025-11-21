@@ -51,7 +51,7 @@ export default function HomeScreen(){
                 <BadButton eventName="Doom Scroll" className="HomepageButtons"/>
                 <BadButton eventName="Smoke" className="HomepageButtons"/>
                 <br/>
-                <EventButton eventName="+" className="HomepageButtons"/>
+                <EventButton eventName="+" className="HomepageButtons">+</EventButton>
                 <Button onClick={handleCalender}>Calendar</Button>
                 <Button onClick={handleImport}>Import Data</Button>
                 <Button onClick={handleReports}>Reports</Button>

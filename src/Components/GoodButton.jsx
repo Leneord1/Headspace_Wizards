@@ -46,7 +46,7 @@ export default function GoodButton(props){
         }
 
         if (typeof submission.date !== "undefined") {
-            console.log('works' + submission.date);
+            console.log(JSON.stringify(submission));
         } else console.log('broke');
     }
 

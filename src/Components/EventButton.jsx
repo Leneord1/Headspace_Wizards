@@ -30,11 +30,10 @@ export default function EventButton(props){
     const [description, setDescription] = useState('');
     const [duration, setDuration] = useState(1);
     const [trigger, setTrigger] = useState('');
-    //const [currTime, setCurrentTime] = useState<Dayjs | null>(dayjs('2025-04-17T15:30'))
+    const [name, setName] = useState('');
 
-    const name = props.eventName;
-
-
+    //const [currTime, setCurrentTime] = useState<Dayjs | null>(dayjs('2025-04-17T15:30')
+    const justName = props.eventName;
 
     function handleSubmit(){
         let submission = {}
@@ -60,7 +59,7 @@ export default function EventButton(props){
 
 
         if (typeof submission.date !== "undefined") {
-        console.log('works' + submission.date);
+        console.log(JSON.stringify(submission));
         } else console.log('broke');
     }
 
@@ -68,7 +67,7 @@ export default function EventButton(props){
     return (
         <div>
             <Button onClick={handleOpen} variant="contained">
-                {name}
+                {justName}
             </Button>
             <Modal
                 open={open}
@@ -102,6 +101,8 @@ export default function EventButton(props){
                         label="Name"
                         placeholder="Name"
                         className="inputbuttons"
+                        value={name}
+                        onChange={((e) => setName(e.target.value))}
 
                     />
                     <TextField
