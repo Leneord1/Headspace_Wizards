@@ -1,9 +1,15 @@
-import viteLogo from "../../public/vite.svg";
+import viteLogo from "../assets/vite.svg";
 import reactLogo from "../assets/react.svg";
 import EventButton from "./EventButton.jsx";
+import Calendar from "./Calendar.jsx";
+import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
+import dayjs from "dayjs";
+import {useNavigate} from "react-router-dom";
+
 
 
 export default function HomeScreen(){
+    const navigate = useNavigate();
 
     return(
         <>
@@ -17,7 +23,9 @@ export default function HomeScreen(){
             </div>
             <h1>What is going on?</h1>
             <div className="card">
-                <EventButton></EventButton>
+                <EventButton eventName="Eat"></EventButton>
+
+
             </div>
             <p className="read-the-docs">
                 Click on the Vite and React logos to learn more

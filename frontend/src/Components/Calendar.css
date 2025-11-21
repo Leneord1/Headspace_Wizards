@@ -7,12 +7,12 @@
 /* Calendar Trigger Button */
 .calendar-trigger {
   position: relative;
-  background: linear-gradient(135deg, #f7941d, #e6830c);
+  background: linear-gradient(135deg, #f7911d, #e67f0c);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 15px;
   padding: 10px 10px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(247, 148, 29, 0.3);

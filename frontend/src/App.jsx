@@ -13,11 +13,11 @@ import HomeScreen from "./Components/HomeScreen.jsx";
 export default function App() {
 
 
-
   return (
       <Router>
           <Routes>
               <Route path="/" element={<HomeScreen />} />
+
 
           </Routes>
       </Router>
