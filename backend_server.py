@@ -221,5 +221,5 @@ def reports_download_pdf():
 
 if __name__ == '__main__':
     print('Starting helper backend server on http://127.0.0.1:5000')
-    app.run(host='127.0.0.1', port=5000, debug=True)
-
+    # Disable the reloader to prevent brief restarts which may cause connection refused
+    app.run(host='127.0.0.1', port=5000, debug=True, use_reloader=False)

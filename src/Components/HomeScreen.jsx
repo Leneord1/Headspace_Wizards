@@ -1,4 +1,4 @@
-import viteLogo from "../../public/vite.svg";
+const viteLogo = '/vite.svg';
 import reactLogo from "../assets/react.svg";
 import EventButton from "./EventButton.jsx";
 import Button from '@mui/material/Button';

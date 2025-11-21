@@ -69,6 +69,22 @@ button:focus-visible {
   color: var(--muted-color);
 }
 
+@media (max-width: 600px) {
+  :root {
+    /* keep variables but allow responsive font scaling if needed */
+  }
+  #root {
+    padding: 1rem;
+  }
+  .logo {
+    height: 4em;
+    padding: 1em;
+  }
+  .card {
+    padding: 1em;
+  }
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     --bg-color: #ffffff;
@@ -88,20 +104,21 @@ button:focus-visible {
   }
 }
 
-@media (max-width: 600px) {
-  :root {
-    /* keep variables but allow responsive font scaling if needed */
-  }
-  #root {
-    padding: 1rem;
-  }
-  .logo {
-    height: 4em;
-    padding: 1em;
-  }
-  .card {
-    padding: 1em;
-  }
-}
-
 /* End of file */
+
+/* Make dark theme opt-in via adding `dark-theme` class to the <body> element.
+   This prevents the app from switching to a dark (black) background automatically
+   based on the user's OS preference. To enable dark mode manually in the console:
+     document.body.classList.add('dark-theme')
+*/
+
+/* dark-theme class (opt-in) */
+body.dark-theme {
+  --bg-color: #242424;
+  --text-color: #f3f6f9;
+  --muted-color: #cfd6dd;
+  --link-color: #646cff;
+  --link-hover: #747bff;
+  --button-bg: #1a1a1a;
+  --button-text: #f3f6f9;
+}

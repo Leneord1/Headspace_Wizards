@@ -6,8 +6,8 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import Button from '@mui/material/Button';
 import './calenderPage.css';
 
-// Configure backend base URL here or via env var
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || '';
+// Configure backend base URL here or via Vite env var (set VITE_BACKEND_URL in .env)
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || '';
 
 export default function CalendarPage() {
   const calendarRef = useRef(null);
