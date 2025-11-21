@@ -20,47 +20,34 @@ const style = {
     p: 5,
 };
 
-export default function EventButton(props){
+export default function GoalButton(){
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const [radioValue, setValue] = useState('good');
     const [currentDate, setCurrentDate] = useState('');
     const [description, setDescription] = useState('');
     const [duration, setDuration] = useState(1);
     const [trigger, setTrigger] = useState('');
     //const [currTime, setCurrentTime] = useState<Dayjs | null>(dayjs('2025-04-17T15:30'))
 
-    const name = props.eventName;
 
 
 
     function handleSubmit(){
-        let submission = {}
-        if (radioValue === 'good'){
-            submission = {
+
+            const submission = {
                 "name": name,
                 "date": currentDate,
                 "description": description,
-                "radioValue": radioValue,
                 "duration": duration,
+                "trigger": trigger,
 
             }
-        } else {
-            submission = {
-                "name": name,
-                "date": currentDate,
-                "description": description,
-                "radioValue": radioValue,
-                "duration": duration,
-                "trigger": trigger
-            }
-        }
 
 
         if (typeof submission.date !== "undefined") {
-        console.log('works' + submission.date);
+            console.log('works' + submission.date);
         } else console.log('broke');
     }
 
@@ -68,7 +55,7 @@ export default function EventButton(props){
     return (
         <div>
             <Button onClick={handleOpen} variant="contained">
-                {name}
+                Add Goal
             </Button>
             <Modal
                 open={open}
@@ -79,20 +66,6 @@ export default function EventButton(props){
                 <Box sx={style}>
                     <Button onClick={handleClose} size="small" variant="outlined" >Close</Button>
 
-                    <FormControl >
-                        <RadioGroup
-                            className="radio"
-                            row
-                            aria-setsize="small"
-                            aria-labelledby="demo-radio-buttons-group-label"
-                            name="radio-buttons-group"
-                            value={radioValue}
-                            onChange={((e) => setValue(e.target.value))}
-                        >
-                            <FormControlLabel value="good" control={<Radio />} label="Good" className="radiotext" />
-                            <FormControlLabel value="bad" control={<Radio />} label="Bad" className="radiotext" />
-                        </RadioGroup>
-                    </FormControl>
 
                     <br/>
                     <TextField
@@ -100,6 +73,7 @@ export default function EventButton(props){
                         size="small"
                         id="outlined-required"
                         label="Name"
+                        defaultValue={name}
                         placeholder="Name"
                         className="inputbuttons"
 
@@ -112,24 +86,24 @@ export default function EventButton(props){
                         value={duration}
                         onChange={((e) => setDuration(e.target.value))}
                     />
-                    {radioValue==='bad' && <TextField
+                    <TextField
 
                         size="small"
-                        id="outlined-required"
+                        id="motivation"
                         label="Why?"
                         value={trigger}
                         onChange={((e) => setTrigger(e.target.value))}
                         placeholder="Why"
                         className="inputbuttons"
 
-                    />}
+                    />
                     <TextField
-                        type="datetime-local"
+                        type="date"
 
                         value={currentDate}
                         onChange={((e) => setCurrentDate(e.target.value))}
 
-                        />
+                    />
 
 
                     <TextField

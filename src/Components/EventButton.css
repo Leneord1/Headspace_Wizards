@@ -1,0 +1,19 @@
+.root{
+    color:black;
+}
+
+.radio {
+padding-left: 175px;
+
+}
+.radiotext{
+    color: #1a1a1a;
+}
+.inputbuttons{
+    width: 50%;
+}
+
+.staticname{
+    padding-left: 500px;
+    color: pink;
+}

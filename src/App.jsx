@@ -6,6 +6,7 @@ import ImportEvents from "./Components/importEvents.jsx";
 import ReportPage from "./Components/ReportPage.jsx";
 import ErrorBoundary from './ErrorBoundary.jsx';
 import ErrorOverlay from './ErrorOverlay.jsx';
+import GoalPage from "./Components/GoalPage.jsx";
 
 export default function App() {
   return (
@@ -15,7 +16,8 @@ export default function App() {
           <Route path="/" element={<HomeScreen />} />
           <Route path="/calendar-page" element={<CalendarPage />} />
           <Route path="/importEvents" element={<ImportEvents />} />
-          <Route path="/reports" element={<ReportPage />} />
+            <Route path="/goals" element={<GoalPage/>} />
+            <Route path="/reports" element={<ReportPage />} />
         </Routes>
       </Router>
       <ErrorOverlay />
