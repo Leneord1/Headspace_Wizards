@@ -7,16 +7,21 @@ import dayjs from "dayjs";
 import {useNavigate} from "react-router-dom";
 import GoodButton from "./GoodButton.jsx";
 import BadButton from "./BadButton.jsx";
+import Button from "@mui/material/Button";
 
 
 
 export default function HomeScreen(){
     const navigate = useNavigate();
 
+    function handleGoalNav(){
+        navigate("/goals");
+    }
+
     return(
         <>
             <div>
-
+                <Button onClick={handleGoalNav}>Goals</Button>
             </div>
             <h1>What is going on?</h1>
             <div className="container">

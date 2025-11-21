@@ -20,32 +20,31 @@ const style = {
     p: 5,
 };
 
-export default function BadButton(props){
+export default function GoalButton(){
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const radioValue='bad';
     const [currentDate, setCurrentDate] = useState('');
     const [description, setDescription] = useState('');
     const [duration, setDuration] = useState(1);
     const [trigger, setTrigger] = useState('');
     //const [currTime, setCurrentTime] = useState<Dayjs | null>(dayjs('2025-04-17T15:30'))
 
-    const name = props.eventName;
 
 
 
     function handleSubmit(){
-        const submission = {
-            "name": name,
-            "date": currentDate,
-            "description": description,
-            "radioValue": radioValue,
-            "duration": duration,
-            "trigger": trigger,
 
-        }
+            const submission = {
+                "name": name,
+                "date": currentDate,
+                "description": description,
+                "duration": duration,
+                "trigger": trigger,
+
+            }
+
 
         if (typeof submission.date !== "undefined") {
             console.log('works' + submission.date);
@@ -53,11 +52,10 @@ export default function BadButton(props){
     }
 
 
-
     return (
         <div>
             <Button onClick={handleOpen} variant="contained">
-                {name}
+                Add Goal
             </Button>
             <Modal
                 open={open}
@@ -68,8 +66,10 @@ export default function BadButton(props){
                 <Box sx={style}>
                     <Button onClick={handleClose} size="small" variant="outlined" >Close</Button>
 
+
+                    <br/>
                     <TextField
-                        disabled
+                        required
                         size="small"
                         id="outlined-required"
                         label="Name"
@@ -89,16 +89,16 @@ export default function BadButton(props){
                     <TextField
 
                         size="small"
-                        id="Trigger"
+                        id="outlined-required"
                         label="Why?"
-                        placeholder="Why"
-                        className="inputbuttons"
                         value={trigger}
                         onChange={((e) => setTrigger(e.target.value))}
+                        placeholder="Why"
+                        className="inputbuttons"
 
                     />
                     <TextField
-                        type="datetime-local"
+                        type="date"
 
                         value={currentDate}
                         onChange={((e) => setCurrentDate(e.target.value))}
